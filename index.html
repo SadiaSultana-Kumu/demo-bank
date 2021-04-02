@@ -57,9 +57,9 @@
             <div class="col-md-6">
                 <div class="submit-area mt-5">
                     <h4>Withdraw</h4>
-                    <input type="text" class="form-control" placeholder="$ Amount you want to withdraw">
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ Amount you want to withdraw">
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button id="addwithdraw" class="btn btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
@@ -74,14 +74,26 @@
         //login button event handler
         const depositBtn = document.getElementById("addDeposit");
         depositBtn.addEventListener("click", function(){
-            const depositAmount = document.getElementById("depositAmount").value;
-            const depositNumber = parseFloat(depositAmount);
+            
+            const depositNumber = getInputNumber("depositAmount");
             
             updateSpanText("currentDeposit", depositNumber);
             updateSpanText("currentBalance", depositNumber);
 
             document.getElementById("depositAmount").value = "";
         })
+
+        //withdraw button event handler
+
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click",function(){
+            const withdrawNumber = getInputNumber("withdrawAmount");
+        })
+        function getInputNumber(id){
+            const amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(amount);
+            return withdrawNumber;
+        }
         function updateSpanText(id, depositNumber){
             const current = document.getElementById(id).innerText;
             const currentBalanceNumber = parseFloat(current);
